@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>项目上报页面</title>
+
+    <%- include ../common/headed %>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/stylesheets/datatables/dataTables.bootstrap.css">
+    <!-- 文件上传-->
+    <link rel="stylesheet" href="/stylesheets/uploader.css">
+    <%- include ../common/html5Support %>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <%- include ../common/main-header %>
+
+    <%- include ../common/main-sidebar %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                项目表
+                <small>下属单位：山东</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Tables</a></li>
+                <li class="active">uploader tables</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">具有完整功能的数据表</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <button id="addProject" class="btn btn-primary" style="margin-bottom: 10px;">新增项目</button>
+                            <table id="example" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>项目名称</th>
+                                    <th>申请日期</th>
+                                    <th>项目描述</th>
+                                    <th>项目路径</th>
+                                    <th>项目状态</th>
+                                    <th>功能按钮</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>青岛市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>青岛市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/青岛市项目.txt" target="view_window" download="">/itemfile/青岛市项目.txt</a></td>
+                                    <td>审核成功</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);" disabled="disabled">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);" disabled="disabled">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>济南市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>济南市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/济南市项目.txt" target="view_window" download="">/itemfile/济南市项目.txt</a></td>
+                                    <td>待审核</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>聊城市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>聊城市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/聊城市项目.txt" target="view_window" download="">/itemfile/聊城市项目.txt</a></td>
+                                    <td>已退回</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>淄博市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>淄博市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/淄博市项目.txt" target="view_window" download="">/itemfile/淄博市项目.txt</a></td>
+                                    <td>待审核</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>烟台市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>烟台市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/烟台市项目.txt" target="view_window" download="">/itemfile/烟台市项目.txt</a></td>
+                                    <td>待审核</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>威海市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>威海市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/威海市项目.txt" target="view_window" download="">/itemfile/威海市项目.txt</a></td>
+                                    <td>审核成功</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);" disabled="disabled">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);" disabled="disabled">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>菏泽市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>菏泽市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/菏泽市项目.txt" target="view_window" download="">/itemfile/菏泽市项目.txt</a></td>
+                                    <td>审核成功</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);" disabled="disabled">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);" disabled="disabled">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>泰安市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>泰安市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/泰安市项目.txt" target="view_window" download="">/itemfile/泰安市项目.txt</a></td>
+                                    <td>待审核</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>滨州市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>滨州市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/滨州市项目.txt" target="view_window" download="">/itemfile/滨州市项目.txt</a></td>
+                                    <td>已退回</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>日照市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>日照市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/日照市项目.txt" target="view_window" download="">/itemfile/日照市项目.txt</a></td>
+                                    <td>待审核</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>莱芜市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>莱芜市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/莱芜市项目.txt" target="view_window" download="">/itemfile/莱芜市项目.txt</a></td>
+                                    <td>待审核</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>济宁市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>济宁市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/济宁市项目.txt" target="view_window" download="">/itemfile/济宁市项目.txt</a></td>
+                                    <td>待审核</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>枣庄市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>枣庄市政府项目申报工作岗位设定及职能描述</td>
+                                    <td><a href="/itemfile/枣庄市项目.txt" target="view_window" download="">/itemfile/枣庄市项目.txt</a></td>
+                                    <td>已退回</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="report(this);">上报</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>项目名称</th>
+                                    <th>申请日期</th>
+                                    <th>项目描述</th>
+                                    <th>项目路径</th>
+                                    <th>项目状态</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <%- include ../common/main-footer %>
+
+    <%- include ../common/control-sidebar %>
+
+    <!-- 项目新增模态框（Modal） -->
+    <div class="modal fade" id="add-Modal" tabindex="-1" role="dialog" aria-labelledby="add-ModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="add-ModalLabel">审核</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="addForm" class="form-horizontal" role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="add-name" class="col-sm-2 control-label">项目名称</label>
+                                <div class="col-sm-10">
+                                    <input name="addname" type="text" class="form-control" id="add-name" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-data" class="col-sm-2 control-label">项目描述</label>
+                                <div class="col-sm-10">
+                                    <textarea name="adddata" type="text" class="form-control" id="add-data" autocomplete="off"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-file" class="col-sm-2 control-label">审核文件</label>
+                                <div class="col-sm-10">
+                                    <div class="uploader blue">
+                                        <input type="text" class="filename" id="add-file" readonly/>
+                                        <input type="button" name="file" class="button" value="浏览本地"/>
+                                        <input type="file" size="30"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary col-sm-2 col-xs-5" id="addButton" style="float: right;">确定</button>
+                    <button type="button" class="btn btn-default col-sm-2 col-xs-5" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+
+    <!-- 项目编辑模态框（Modal） -->
+    <div class="modal fade" id="edit-Modal" tabindex="-1" role="dialog" aria-labelledby="edit-ModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="edit-ModalLabel">编辑</h4>
+                    <span id="edit-index" style="display:none;"></span>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" class="form-horizontal" role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="edit-name" class="col-sm-2 control-label">项目名称</label>
+                                <div class="col-sm-10">
+                                    <input name="editname" type="text" class="form-control" id="edit-name" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-data" class="col-sm-2 control-label">项目描述</label>
+                                <div class="col-sm-10">
+                                    <textarea name="editdata" type="text" class="form-control" id="edit-data" autocomplete="off"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-file" class="col-sm-2 control-label">审核文件</label>
+                                <div class="col-sm-10">
+                                    <div class="uploader blue">
+                                        <input type="text" class="filename" id="edit-file" readonly/>
+                                        <input type="button" name="file" class="button" value="浏览本地"/>
+                                        <input type="file" size="30"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary col-sm-2 col-xs-5" id="editButton" style="float: right;">确定</button>
+                    <button type="button" class="btn btn-default col-sm-2 col-xs-5" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+
+</div>
+<!-- ./wrapper -->
+
+<%- include ../common/footed %>
+
+<!-- DataTables  -jquery表格插件 -->
+<script src="/stylesheets/datatables/jquery.dataTables.min.js"></script>
+<script src="/stylesheets/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll  -jquery滚动条 -->
+<script src="/stylesheets/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- AdminLTE App  --基于bootstrap3的前端框架 -->
+<script src="/stylesheets/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/stylesheets/dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    var t =  $('#example').DataTable({
+      "paging": true,  //是否允许Datatables开启排序
+      "lengthChange": true,  //是否允许用户改变表格每页显示的记录数
+      "searching": true,  //是否允许Datatables开启本地搜索
+      "ordering": true,  //是否允许Datatables开启排序
+      "info": true,  //控制是否显示表格左下角的信息
+      "autoWidth": false,  //控制Datatables是否自适应宽度
+      "pageLength": 10,  //改变初始化页长度（每页多少条数据）
+      "oLanguage": {
+        "sLengthMenu": "每页显示 _MENU_ 条记录",
+        "sZeroRecords": "对不起，查询不到任何相关数据",
+        "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_条记录",
+        "sInfoEmtpy": "找不到相关数据",
+        "sInfoFiltered": "数据表中共为 _MAX_ 条记录)",
+        "sProcessing": "正在加载中...",
+        "sSearch": "搜索:",
+        "oPaginate": {
+          "sFirst": "第一页",
+          "sPrevious":" 上一页 ",
+          "sNext": " 下一页 ",
+          "sLast": " 最后一页 "
+        }
+      },
+      fnDrawCallback : function () {  //添加序号
+        let api = this.api();
+        api.column(0).nodes().each(function(cell, i) {
+          cell.innerHTML = i + 1;
+        });
+      },
+      initComplete: function () {  //下拉搜索
+        var api = this.api();
+        api.columns().indexes().flatten().each( function ( i ) {
+          var column = api.column( i );
+          var select = $('<select><option value=""></option></select>')
+            .appendTo( $(column.footer()).empty() )
+            .on( 'change', function () {
+              var val = $.fn.dataTable.util.escapeRegex(
+                $(this).val()
+              );
+              column
+                .search( val ? '^'+val+'$' : '', true, false )
+                .draw();
+            });
+          column.data().unique().sort().each( function ( d, j ) {
+            select.append( '<option value="'+d+'">'+d+'</option>' )
+          });
+        });
+      },
+      columnDefs: [  //指定的列不排序
+        { orderable: false, targets: -1 }  //允许你提供从右边(使用负数)和从左边偏移的索引
+      ]
+    });
+
+    // 新增项目，打开模态框
+    $('#addProject').click(function () {
+      $("#add-Modal").modal("show");
+    });
+
+    // 确定新增项目
+    $('#addButton').click(function () {
+      if ($('#add-name').next().hasClass('glyphicon-ok')) {
+        if ($('#add-data').next().hasClass('glyphicon-ok')) {
+          var file = $('#add-file').val();
+          if (file == '未选择文件...' || !file) {
+            alert('项目文件不能为空！');
+          } else {
+            var mydate = new Date().Format("yyyy-MM-dd HH:mm:ss");
+            var postobj = {
+              name: $('#add-name').val(),
+              date: mydate,
+              data: $('#add-data').val(),
+              file: $('#add-file').val()
+            }
+            addrow(postobj);
+          }
+        } else {
+          alert('请输入正确的项目描述，且不能为空！');
+        }
+      }else {
+        alert('请输入正确的项目名称，且不能为空！');
+      }
+    });
+
+    // 项目数据加入页面表格中
+    function addrow(obj) {
+      t.row.add( [
+        '',
+        obj.name,
+        obj.date,
+        obj.data,
+        obj.file,
+        '待审核',
+        '<span><a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a><a role="button" class="btn btn-xs btn-primary" onclick="report(this);" disabled="disabled">上报</a></span>'
+      ] ).draw();
+      alert('项目添加成功');
+      $("#add-Modal").modal("hide");
+    }
+
+    // 新增项目模态框关闭时，清空表单输入值并取消校验样式
+    $("#add-Modal").on('hidden.bs.modal',function(e){
+      $('#add-name').val('');
+      $('#add-data').val('');
+      $('#add-file').val('未选择文件...');
+      //移除form表单验证  上次的校验配置
+      $("#addForm").data('bootstrapValidator').destroy();
+      $('#addForm').data('bootstrapValidator', null);
+      // Modal验证销毁重构
+      formValidator();
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  // 初始化表单验证
+  $(document).ready(function() {
+    formValidator();
+    formValidatorEdit();
+  });
+
+  function formValidator() {
+    //表单验证，当输入错误的值时，输入框下以文字格式提示错误  验证规则
+    $('#addForm').bootstrapValidator({
+      message: '此值无效',
+      feedbackIcons: {  //反馈图标
+        valid: 'glyphicon glyphicon-ok',  //有效的：正确
+        invalid: 'glyphicon glyphicon-remove',  //无效的：错误
+        validating: 'glyphicon glyphicon-refresh'  //验证：刷新
+      },
+      fields: {
+        addname: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '项目名称是必需的，不能为空'
+            },
+            stringLength: {
+              min: 2,
+              max: 18,
+              message: '项目名称长度必须大于2个字符，小于18个字符'
+            }
+          }
+        },
+        adddata: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '项目描述是必需的，不能为空'
+            },
+            stringLength: {
+              min: 0,
+              max: 100,
+              message: '项目描述长度必须小于100个字符'
+            }
+          }
+        }
+      }
+    })
+      .on('success.form.bv', function(e) {
+        // 阻止提交表单
+        e.preventDefault();
+
+        var $form = $(e.target),
+          validator = $form.data('bootstrapValidator');
+        $form.find('.alert').html('Thanks for signing up. Now you can sign in as ' + validator.getFieldElements('addname').val()).show();
+      });
+  }
+  function formValidatorEdit() {
+    //表单验证，当输入错误的值时，输入框下以文字格式提示错误  验证规则
+    $('#editForm').bootstrapValidator({
+      message: '此值无效',
+      feedbackIcons: {  //反馈图标
+        valid: 'glyphicon glyphicon-ok',  //有效的：正确
+        invalid: 'glyphicon glyphicon-remove',  //无效的：错误
+        validating: 'glyphicon glyphicon-refresh'  //验证：刷新
+      },
+      fields: {
+        editname: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '项目名称是必需的，不能为空'
+            },
+            stringLength: {
+              min: 2,
+              max: 18,
+              message: '项目名称长度必须大于2个字符，小于18个字符'
+            }
+          }
+        },
+        editdata: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '项目描述是必需的，不能为空'
+            },
+            stringLength: {
+              min: 0,
+              max: 100,
+              message: '项目描述长度必须小于100个字符'
+            }
+          }
+        }
+      }
+    })
+      .on('success.form.bv', function(e) {
+        // 阻止提交表单
+        e.preventDefault();
+
+        var $form = $(e.target),
+          validator = $form.data('bootstrapValidator');
+        $form.find('.alert').html('Thanks for signing up. Now you can sign in as ' + validator.getFieldElements('addname').val()).show();
+      });
+  }
+</script>
+<script>
+  $(function(){
+    $("input[type=file]").change(function(){$(this).parents(".uploader").find(".filename").val($(this).val());});
+    $("input[type=file]").each(function(){
+      if($(this).val()==""){$(this).parents(".uploader").find(".filename").val("未选择文件...");}
+    });
+  });
+</script>
+<script>
+  // 项目上报
+  function report(obj) {
+    if($(obj).attr("disabled") != 'disabled') {  //如果按钮是可用的
+      var state = $(obj).parents('td').prev().html();
+      if (state == "审核成功") {
+        return false;
+      } else {
+        alert('上报成功!');
+        $(obj).attr("disabled",true);
+        $(obj).prev().attr("disabled",true);
+      }
+    } else {
+      return false;
+    }
+  }
+  // 项目信息修改
+  function editModal(obj) {
+    var state = $(obj).parents('td').prev().html();
+    if($(obj).attr("disabled") != 'disabled') {  //如果按钮是可用的
+      $("#edit-Modal").modal("show");
+
+      var tds = $(obj).parents('tr').find('td');
+      $('#edit-index').val(tds.eq(0).text());
+      $('#edit-name').val(tds.eq(1).text());
+      $('#edit-data').val(tds.eq(3).text());
+      $('#edit-file').val(tds.eq(4).text());
+    } else {
+      return false;
+    }
+  }
+
+  // 确定项目修改
+  $('#editButton').click(function () {
+    var postobj = {
+      index: $('#edit-index').val() - 1,
+      nameIndex: 1,
+      name: $('#edit-name').val(),
+      dataIndex: 3,
+      data: $('#edit-data').val(),
+      fileIndex: 4,
+      file: $('#edit-file').val()
+    };
+    updateTableInfo(postobj);
+    alert('修改成功');
+    $('#edit-Modal').modal('hide');
+  })
+
+  // 通过序号，在修改数据库成功后修改页面表格对应数据
+  function updateTableInfo(obj) {
+    var td = $('#example').find('tbody').find('tr').eq(obj.index).find('td');
+    td.eq(obj.nameIndex).html(obj.name);
+    td.eq(obj.dataIndex).html(obj.data);
+    td.eq(obj.fileIndex).html(obj.file);
+  }
+</script>
+</body>
+</html>
+

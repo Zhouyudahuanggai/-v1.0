@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>测试</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/drop/dist/basic.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/drop/dist/dropzone.min.css">
+    <script src="/stylesheets/drop/dist/dropzone.min.js"></script>
+    <style>
+        .dropzone {
+            border: 2px dashed #0087F7;
+            border-radius: 5px;
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+<form action="/uploader" class="dropzone needsclick dz-clickable" id="my-dropzone">
+    <div class="dz-message needsclick">
+        将文件拖至此处或单击以上载。<br>
+        <span class="note needsclick">(这只是一个演示 dropzone. 所选文件实际<strong>未</strong>上载。)</span>
+    </div>
+</form>
+
+<script>
+  new Dropzone("#my-dropzone", { /* options */ });
+
+  Dropzone.options.myAwesomeDropzone = { maxFilesize: 1 };
+
+  // 或者如果你需要在其他地方访问DropZone:
+  var myDropzone = Dropzone.forElement("#my-dropzone");
+  myDropzone.on("error", function(file, message) { alert(message); });
+</script>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>汇总表打印页面</title>
+
+    <%- include ../common/headed %>
+    <!-- 导出 -->
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css">
+    <!-- 导出 -->
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/stylesheets/datatables/dataTables.bootstrap.css">
+    <style>
+        /*.dataTables_wrapper .dataTables_paginate .paginate_button {*/
+            /*padding: 0;*/
+        /*}*/
+
+        .td-pointer {
+            cursor: pointer;
+        }
+        .red {
+            color: red;
+        }
+        .green {
+            color: #1fc31f;
+        }
+    </style>
+
+    <%- include ../common/html5Support %>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <%- include ../common/main-header %>
+
+    <%- include ../common/main-sidebar %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                汇总表
+                <small>权限：审核员</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Tables</a></li>
+                <li class="active">receipt tables</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">具有完整功能的数据表</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>下属单位</th>
+                                    <th>项目名称</th>
+                                    <th>申报时间</th>
+                                    <th>申报次数</th>
+                                    <th>延误次数</th>
+                                    <th>未通过次数</th>
+                                    <th>通过次数</th>
+                                    <th>验收申请</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>山东</td>
+                                    <td>青岛市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>6</td>
+                                    <td class="red">1</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">1</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">5</td>
+                                    <td>提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>上海</td>
+                                    <td>闵行区政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>5</td>
+                                    <td class="red">0</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">3</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">2</td>
+                                    <td class="red">未提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>江苏</td>
+                                    <td>南京市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>6</td>
+                                    <td class="red">1</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">1</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">5</td>
+                                    <td class="red">未提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>浙江</td>
+                                    <td>杭州市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>9</td>
+                                    <td class="red">4</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">2</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">6</td>
+                                    <td class="red">未提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>安徽</td>
+                                    <td>合肥市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>6</td>
+                                    <td class="red">0</td>
+                                    <td class="red td-pointer " onclick="faileModald(this);">0</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">6</td>
+                                    <td class="green" onclick="failedModal(this);">已结束</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>广东</td>
+                                    <td>深圳市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>3</td>
+                                    <td class="red">0</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">1</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">2</td>
+                                    <td class="red">未提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>北京</td>
+                                    <td>朝阳区政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>5</td>
+                                    <td class="red">4</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">4</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">1</td>
+                                    <td>提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>广西</td>
+                                    <td>桂林市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>8</td>
+                                    <td class="red">1</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">1</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">6</td>
+                                    <td>提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>海南</td>
+                                    <td>三亚市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>6</td>
+                                    <td class="red">3</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">2</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">3</td>
+                                    <td class="red">未提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>河南</td>
+                                    <td>郑州市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>6</td>
+                                    <td class="red">1</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">1</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">5</td>
+                                    <td class="red">未提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>湖南</td>
+                                    <td>长沙市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>6</td>
+                                    <td class="red">1</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">1</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">5</td>
+                                    <td class="red">未提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>山西</td>
+                                    <td>太原市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>7</td>
+                                    <td class="red">5</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">0</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">6</td>
+                                    <td>提交</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>四川</td>
+                                    <td>成都市政府项目</td>
+                                    <td>2019-05-09 16:50:46</td>
+                                    <td>4</td>
+                                    <td class="red">0</td>
+                                    <td class="red td-pointer " onclick="failedModal(this);">2</td>
+                                    <td class="green td-pointer" onclick="adoptModal(this);">2</td>
+                                    <td class="red">未提交</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>下属单位</th>
+                                    <th>项目名称</th>
+                                    <th>申报时间</th>
+                                    <th>申报次数</th>
+                                    <th>延误次数</th>
+                                    <th>未通过次数</th>
+                                    <th>通过次数</th>
+                                    <th>验收申请</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <%- include ../common/main-footer %>
+
+    <%- include ../common/control-sidebar %>
+
+    <!-- 项目未通过模态框（Modal） -->
+    <div class="modal fade" id="failed-Modal" tabindex="-1" role="dialog" aria-labelledby="failed-ModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="failed-ModalLabel">未通过次数</h4>
+                    <span id="failed-index" style="display:none;"></span>
+                </div>
+                <div class="modal-body">
+                    <form id="returnForm" class="form-horizontal" role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="" class="col-sm-1 control-label">1</label>
+                                <div class="col-sm-11">
+                                    <a href="/itemfile/青岛市项目.txt" target="view_window" download="">/itemfile/青岛市项目.txt</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary col-sm-2 col-xs-5" id="returnButton" style="float: right;">确定</button>
+                    <button type="button" class="btn btn-default col-sm-2 col-xs-5" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+
+    <!-- 项目通过模态框（Modal） -->
+    <div class="modal fade" id="adopt-Modal" tabindex="-1" role="dialog" aria-labelledby="adopt-ModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="adopt-ModalLabel">通过次数</h4>
+                    <span id="adopt-index" style="display:none;"></span>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="" class="col-sm-1 control-label">1</label>
+                                <div class="col-sm-11">
+                                    <a href="/itemfile/青岛市项目.txt" target="view_window" download="">/itemfile/青岛市项目.txt</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-1 control-label">2</label>
+                                <div class="col-sm-11">
+                                    <a href="/itemfile/青岛市项目.txt" target="view_window" download="">/itemfile/青岛市项目.txt</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-1 control-label">3</label>
+                                <div class="col-sm-11">
+                                    <a href="/itemfile/青岛市项目.txt" target="view_window" download="">/itemfile/青岛市项目.txt</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-1 control-label">4</label>
+                                <div class="col-sm-11">
+                                    <a href="/itemfile/青岛市项目.txt" target="view_window" download="">/itemfile/青岛市项目.txt</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-1 control-label">5</label>
+                                <div class="col-sm-11">
+                                    <a href="/itemfile/青岛市项目.txt" target="view_window" download="">/itemfile/青岛市项目.txt</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary col-sm-2 col-xs-5" id="examineButton" style="float: right;">确定</button>
+                    <button type="button" class="btn btn-default col-sm-2 col-xs-5" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+</div>
+<!-- ./wrapper -->
+
+<%- include ../common/footed %>
+
+<!-- DataTables  -jquery表格插件 -->
+<script src="/stylesheets/datatables/jquery.dataTables.min.js"></script>
+<script src="/stylesheets/datatables/dataTables.bootstrap.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+
+
+<!-- SlimScroll  -jquery滚动条 -->
+<script src="/stylesheets/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick  -移动端点击延迟 -->
+<script src="/stylesheets/fastclick/fastclick.js"></script>
+<!-- AdminLTE App  --基于bootstrap3的前端框架 -->
+<script src="/stylesheets/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/stylesheets/dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+    $(function () {
+        $('#example').DataTable({
+            "serverSide": false,  //分页，取数据等等的都放到服务端去. true为后台分页，每次点击分页时会请求后台数据，false为前台分页
+            "paging": true,  //是否允许Datatables开启排序
+            "lengthChange": true,  //是否允许用户改变表格每页显示的记录数
+            "searching": true,  //是否允许Datatables开启本地搜索
+            "ordering": true,  //是否允许Datatables开启排序
+            "info": true,  //控制是否显示表格左下角的信息
+            "autoWidth": false,  //控制Datatables是否自适应宽度
+            "pageLength": 10,  //改变初始化页长度（每页多少条数据）
+            "oLanguage": {
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "对不起，查询不到任何相关数据",
+                "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_条记录",
+                "sInfoEmtpy": "找不到相关数据",
+                "sInfoFiltered": "数据表中共为 _MAX_ 条记录)",
+                "sProcessing": "正在加载中...",
+                "sSearch": "搜索:",
+                "oPaginate": {
+                    "sFirst": "第一页",
+                    "sPrevious":" 上一页 ",
+                    "sNext": " 下一页 ",
+                    "sLast": " 最后一页 "
+                }
+            },
+            fnDrawCallback : function () {
+                let api = this.api();
+                api.column(0).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            },
+            initComplete: function () {
+                var api = this.api();
+                api.columns().indexes().flatten().each( function ( i ) {
+                  var column = api.column( i );
+                  var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                      var val = $.fn.dataTable.util.escapeRegex(
+                        $(this).val()
+                      );
+                      column
+                        .search( val ? '^'+val+'$' : '', true, false )
+                        .draw();
+                    });
+                  column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                  });
+                });
+            },
+            columnDefs: [  //指定的列不排序
+                { orderable: false, targets: -1 }  //允许你提供从右边(使用负数)和从左边偏移的索引
+            ],
+            dom: 'Bfrtip',
+            "buttons": [{
+                "extend": 'excel',
+                "text": '导出数据',
+                'className': 'btn btn-primary',  //按钮的class样式
+                "title": '政府项目汇总表',
+                'exportOptions': {
+                    'modifier': {
+                        'page': 'all'  //current:当前页  all:所有页
+                    }
+                },
+                customize: function (xlsx) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                    $('row c[r^="C"]', sheet).attr('s', '2');
+                }
+            }]
+        });
+    });
+</script>
+
+<script>
+    // 打开审核模态框
+    function adoptModal(obj) {
+        $("#adopt-Modal").modal("show");
+
+        var tds = $(obj).parents('tr').find('td');
+        $('#adopt-index').val(tds.eq(0).text());
+    }
+
+    // 打开退回模态框
+    function failedModal(obj) {
+        $("#failed-Modal").modal("show");
+
+        var tds = $(obj).parents('tr').find('td');
+        $('#failed-index').val(tds.eq(0).text());
+    }
+
+    // 同意按钮点击事件
+    $('#adoptButton').click(function () {
+        $('#adopt-Modal').modal('hide');
+    });
+
+    // 退回按钮点击事件
+    $('#failedButton').click(function () {
+      $('#failed-Modal').modal('hide');
+    });
+</script>
+</body>
+</html>

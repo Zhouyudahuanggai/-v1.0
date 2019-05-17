@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <%- include ../common/headed %>
+  <!-- iCheck -->
+  <link rel="stylesheet" href="/stylesheets/iCheck/square/blue.css">
+  <!-- verify 2017/11/22 -->
+  <link rel="stylesheet" href="/stylesheets/verify/css/verify.css">
+
+  <link rel="stylesheet" href="/stylesheets/login.css">
+
+  <%- include ../common/html5Support %>
+</head>
+<body class="hold-transition login-page">
+<div class="bg">
+  <canvas id="display"></canvas>
+  <div id="blachole"></div>
+</div>
+
+<div>
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="#"><b>汇珏</b>网络审核项目</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+      <p class="login-box-msg">请登录以开始您的会话</p>
+
+      <form id="defaultForm">
+        <div class="form-group has-feedback">
+          <input type="text" id="name" class="form-control" placeholder="用户名/User" name="username" autocomplete="off" />
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" id="pwd" class="form-control" placeholder="密码/Password" name="password" />
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-xs-8">
+            <div class="checkbox icheck">
+              <label>
+                <input type="checkbox" name="rememberMe" id="rememberMe"> 记住密码
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-xs-4">
+            <button type="submit" id="loginbtn" class="btn btn-primary btn-block btn-flat">登录</button>
+          </div>
+          <!-- /.col -->
+        </div>
+
+        <div class="social-auth-links text-center">
+          <p>推荐使用IE9+，谷歌浏览器</p>
+          <p>© Huijue 2010-2020 All Right Reserved</p>
+        </div>
+      </form>
+
+      <!-- 模态框（Modal） -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">请进行下面的拼图验证</h4>
+            </div>
+            <div class="modal-body"></div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+      </div>
+
+    </div>
+    <!-- /.login-box-body -->
+  </div>
+  <!-- /.login-box -->
+</div>
+<%- include ../common/footed %>
+<!-- jQuery Cookie v1.4.1 记住密码 -->
+<script src="/stylesheets/jQueryCookie/jquery.cookie.min.js"></script>
+<!-- verify 2017/11/22 登录验证 -->
+<script src="/stylesheets/verify/js/verify.js"></script>
+<!-- 背景：星座特效 -->
+<script src="/stylesheets/html5/constellation.min.js"></script>
+<!-- iCheck -->
+<script src="/stylesheets/iCheck/icheck.min.js"></script>
+
+<script>
+  $(function () {
+    //登录按钮点击时，验证输入成功后弹出模态框进行拼图验证
+    $('#loginbtn').click(function () {
+      var username = $('#name').val();
+      var password = $('#pwd').val();
+      if ((username.length > 0) && (password.length > 0)) {
+        $('#myModal').modal('show');  //显示模态框
+
+        $('.modal-body').slideVerify({
+          type : 2,  //类型
+          vOffset : 5,  //误差量，根据需求自行调整
+          vSpace : 5,  //间隔
+          imgUrl : '/stylesheets/verify/images/',
+          imgName : ['validate1.jpg', 'validate2.jpg', 'validate3.jpg', 'validate4.jpg'],
+          imgSize : {width: '400px', height: '200px',},
+          blockSize : {width: '40px', height: '40px',},
+          barSize : {width : '400px', height : '40px',},
+          ready : function() {
+          },
+          success : function() {
+            SaveCookie();
+            alert('验证成功，添加你自己的代码！');
+            window.location.href = '/tables/data';
+
+            // var objstr = {};
+            // $.post('/tologin', objstr, function(res) {
+            // }, 'json');
+          },
+          error : function() {
+            alert('验证失败！');
+          }
+        });
+      }else {
+        alert('请输入用户名和密码');
+      }
+    });
+
+    //当模态框关闭时，清空新增的验证码样式
+    $('#myModal').on('hide.bs.modal', function () {
+      $('.verify-img-out').remove();
+      $('.verify-bar-area').remove();
+      //验证模态框意外关闭时，用户名和密码正确时保证登录按钮可以点击
+      if ($('#name').parent().hasClass('has-success')){
+        if ($('#pwd').parent().hasClass('has-success')){
+          $('#loginbtn').attr('disabled',false);
+        }
+      }
+    });
+
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    //表单验证，当输入错误的值时，输入框下以文字格式提示错误
+    $('form').bootstrapValidator({
+      message: '此值无效',
+      //live: 'submitted',  //提交
+      // feedbackIcons: {  //反馈图标
+      //   valid: 'glyphicon glyphicon-ok',  //有效的：正确
+      //   invalid: 'glyphicon glyphicon-remove',  //无效的：错误
+      //   validating: 'glyphicon glyphicon-refresh'  //验证：刷新
+      // },
+      fields: {
+        username: {
+          message: '用户名无效',
+          validators: {
+            notEmpty: {
+              message: '用户名是必需的，不能为空'
+            },
+            stringLength: {
+              min: 6,
+              max: 15,
+              message: '用户名长度必须大于6个字符，小于15个字符'
+            },
+            /*remote: {
+                url: 'remote.php',
+                message: '用户名不可用'
+            },*/
+            regexp: {
+              regexp: /^[\u4E00-\u9FA5A-Za-z0-9]+$/,
+              message: '用户名只能由汉字、字母和数字组成'
+            }
+          }
+        },
+        password: {
+          validators: {
+            notEmpty: {
+              message: '密码是必需的，不能为空'
+            },
+            stringLength: {
+              min: 6,
+              max: 18,
+              message: '密码长度必须大于6个字符，小于18个字符'
+            },
+            regexp: {
+              regexp: /^[a-zA-Z0-9]+$/,
+              message: '密码只能由字母和数字组成'
+            }
+
+          }
+        }
+      }
+    })
+      .on('success.form.bv', function(e) {
+        // 阻止提交表单
+        e.preventDefault();
+
+        var $form = $(e.target),
+          validator = $form.data('bootstrapValidator');
+        $form.find('.alert').html('Thanks for signing up. Now you can sign in as ' + validator.getFieldElements('username').val()).show();
+      });
+  });
+</script>
+
+<script>
+  //记住用户名密码
+  function SaveCookie() {
+    if ($("#rememberMe").prop("checked")) {
+      var str_username = $('#name').val();//用户名
+      var str_password = $('#pwd').val();//密码
+      $.cookie("rmbUser", "true", {expires: 1, path: '/' });
+      $.cookie("username", str_username, {expires: 1, path: '/' });
+      $.cookie("password", str_password, { expires: 7 });
+    }
+    else {
+      $.cookie("rmbUser", "false", { expire: -1, path: '/' });
+      $.cookie("username", "", {expires: -1, path: '/' });
+      $.cookie("password", "", { expires: -1 });
+    }
+  };
+  //当页面加载时，从cookie中获取值，然后填充用户名和密码
+  $(document).ready(function () {
+    if ($.cookie("rmbUser") == "true") {
+      $('#rememberMe').attr("checked", true);
+      $('.icheckbox_square-blue').addClass('checked');
+      $('#name').val($.cookie("username"));
+      $('#pwd').val($.cookie("password"));
+    }
+
+    if ($.cookie("auto") == "true") {
+      setTimeout(function() {
+        if($.cookie("auto") == "true")
+          window.location.href = '下一个界面';
+      },5000);
+    }
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+    //密码大写输入提示
+    function capitalTip(id){
+      $('#' + id).parent().after('<div class="capslock" id="capital_pwd" style="margin-top: -10px;display:none;"><span>大写锁定已开启</span></div>');
+      var capital = false; //聚焦初始化，防止刚聚焦时点击Caps按键提示信息显隐错误
+
+      // 获取大写提示的标签，并提供大写提示显示隐藏的调用接口
+      var capitalTip = {
+        $elem: $('#capital_'+id),
+        toggle: function (s) {
+          if(s === 'none'){
+            this.$elem.hide();
+          }else if(s === 'block'){
+            this.$elem.show();
+          }else if(this.$elem.is(':hidden')){
+            this.$elem.show();
+          }else{
+            this.$elem.hide();
+          }
+        }
+      }
+      $('#' + id).on('keydown.caps',function(e){
+        if (e.keyCode === 20 && capital) { // 点击Caps大写提示显隐切换
+          capitalTip.toggle();
+        }
+      }).on('focus.caps',function(){capital = false}).on('keypress.caps',function(e){capsLock(e)}).on('blur.caps',function(e){
+
+        //输入框失去焦点，提示隐藏
+        capitalTip.toggle('none');
+      });
+      function capsLock(e){
+        var keyCode = e.keyCode || e.which;// 按键的keyCode
+        var isShift = e.shiftKey || keyCode === 16 || false;// shift键是否按住
+        if(keyCode === 9){
+          capitalTip.toggle('none');
+        }else{
+          //指定位置的字符的 Unicode 编码 , 通过与shift键对于的keycode，就可以判断capslock是否开启了
+          // 90 Caps Lock 打开，且没有按住shift键
+          if (((keyCode >= 65 && keyCode <= 90) && !isShift) || ((keyCode >= 97 && keyCode <= 122) && isShift)) {
+            // 122 Caps Lock打开，且按住shift键
+            capitalTip.toggle('block'); // 大写开启时弹出提示框
+            capital = true;
+          } else {
+            capitalTip.toggle('none');
+            capital = true;
+          }
+        }
+      }
+    };
+
+    //调用提示
+    capitalTip('pwd');
+
+  })
+</script>
+
+</body>
+</html>

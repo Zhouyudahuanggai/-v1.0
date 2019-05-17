@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>项目上报页面</title>
+
+    <%- include ../common/headed %>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/stylesheets/datatables/dataTables.bootstrap.css">
+    <!-- 文件上传-->
+    <link rel="stylesheet" href="/stylesheets/uploader.css">
+    <%- include ../common/html5Support %>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <%- include ../common/main-header %>
+
+    <%- include ../common/main-sidebar %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                项目表
+                <small>下属单位：山东</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Tables</a></li>
+                <li class="active">uploader tables</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">具有完整功能的数据表</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <button id="addCompany" class="btn btn-primary" style="margin-bottom: 10px;">新增项目</button>
+                            <table id="example" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>下属单位</th>
+                                    <th>单位名称</th>
+                                    <th>单位地址</th>
+                                    <th>联系人</th>
+                                    <th>手机号</th>
+                                    <th>功能按钮</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>山东</td>
+                                    <td>山东大学(中心校区)</td>
+                                    <td>山东省济南市历城区山大南路27号</td>
+                                    <td>赵</td>
+                                    <td>17854200000</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="allow(this);">允许修改</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>山东</td>
+                                    <td>山东大学(千佛山校区)</td>
+                                    <td>山东省济南市历下区经十路17923号</td>
+                                    <td>钱</td>
+                                    <td>17854200000</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="allow(this);">允许修改</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>山东</td>
+                                    <td>山东大学(洪家楼校区)</td>
+                                    <td>山东省济南市历城区洪家楼5号</td>
+                                    <td>孙</td>
+                                    <td>17854200000</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="allow(this);">允许修改</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>山东</td>
+                                    <td>山东大学(趵突泉校区)</td>
+                                    <td>山东省济南市文化西路44号</td>
+                                    <td>李</td>
+                                    <td>17854200000</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="allow(this);">允许修改</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>山东</td>
+                                    <td>山东大学(兴隆山校区)</td>
+                                    <td>山东省济南市市中区二环东路12550号</td>
+                                    <td>周</td>
+                                    <td>17854200000</td>
+                                    <td>
+                                        <span>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>
+                                            <a role="button" class="btn btn-xs btn-primary" onclick="allow(this);">允许修改</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <%- include ../common/main-footer %>
+
+    <%- include ../common/control-sidebar %>
+
+    <!-- 项目新增模态框（Modal） -->
+    <div class="modal fade" id="add-Modal" tabindex="-1" role="dialog" aria-labelledby="add-ModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="add-ModalLabel">新增下属单位</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="addForm" class="form-horizontal" role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="add-company" class="col-sm-2 control-label">下属单位</label>
+                                <div class="col-sm-10">
+                                    <input name="addcompany" type="text" class="form-control" id="add-company" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-name" class="col-sm-2 control-label">单位名称</label>
+                                <div class="col-sm-10">
+                                    <input name="addname" type="text" class="form-control" id="add-name" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-addr" class="col-sm-2 control-label">单位地址</label>
+                                <div class="col-sm-10">
+                                    <input name="addaddr" type="text" class="form-control" id="add-addr" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-contacts" class="col-sm-2 control-label">联系人</label>
+                                <div class="col-sm-10">
+                                    <input name="addcontacts" type="text" class="form-control" id="add-contacts" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-phone" class="col-sm-2 control-label">手机号</label>
+                                <div class="col-sm-10">
+                                    <input name="addphone" type="text" class="form-control" id="add-phone" autocomplete="off">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary col-sm-2 col-xs-5" id="addButton" style="float: right;">新增</button>
+                    <button type="button" class="btn btn-default col-sm-2 col-xs-5" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+
+    <!-- 项目编辑模态框（Modal） -->
+    <div class="modal fade" id="edit-Modal" tabindex="-1" role="dialog" aria-labelledby="edit-ModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="edit-ModalLabel">编辑</h4>
+                    <span id="edit-index" style="display:none;"></span>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" class="form-horizontal" role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="edit-company" class="col-sm-2 control-label">下属单位</label>
+                                <div class="col-sm-10">
+                                    <input name="editcompany" type="text" class="form-control" id="edit-company" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-name" class="col-sm-2 control-label">单位名称</label>
+                                <div class="col-sm-10">
+                                    <input name="editname" type="text" class="form-control" id="edit-name" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-addr" class="col-sm-2 control-label">单位地址</label>
+                                <div class="col-sm-10">
+                                    <input name="editaddr" type="text" class="form-control" id="edit-addr" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-contacts" class="col-sm-2 control-label">联系人</label>
+                                <div class="col-sm-10">
+                                    <input name="editcontacts" type="text" class="form-control" id="edit-contacts" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-phone" class="col-sm-2 control-label">手机号</label>
+                                <div class="col-sm-10">
+                                    <input name="editphone" type="text" class="form-control" id="edit-phone" autocomplete="off">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary col-sm-2 col-xs-5" id="editButton" style="float: right;">确定</button>
+                    <button type="button" class="btn btn-default col-sm-2 col-xs-5" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+</div>
+<!-- ./wrapper -->
+
+<%- include ../common/footed %>
+
+<!-- DataTables  -jquery表格插件 -->
+<script src="/stylesheets/datatables/jquery.dataTables.min.js"></script>
+<script src="/stylesheets/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll  -jquery滚动条 -->
+<script src="/stylesheets/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- AdminLTE App  --基于bootstrap3的前端框架 -->
+<script src="/stylesheets/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/stylesheets/dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    var t =  $('#example').DataTable({
+      "paging": true,  //是否允许Datatables开启排序
+      "lengthChange": true,  //是否允许用户改变表格每页显示的记录数
+      "searching": true,  //是否允许Datatables开启本地搜索
+      "ordering": true,  //是否允许Datatables开启排序
+      "info": true,  //控制是否显示表格左下角的信息
+      "autoWidth": false,  //控制Datatables是否自适应宽度
+      "pageLength": 10,  //改变初始化页长度（每页多少条数据）
+      "oLanguage": {
+        "sLengthMenu": "每页显示 _MENU_ 条记录",
+        "sZeroRecords": "对不起，查询不到任何相关数据",
+        "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_条记录",
+        "sInfoEmtpy": "找不到相关数据",
+        "sInfoFiltered": "数据表中共为 _MAX_ 条记录)",
+        "sProcessing": "正在加载中...",
+        "sSearch": "搜索:",
+        "oPaginate": {
+          "sFirst": "第一页",
+          "sPrevious":" 上一页 ",
+          "sNext": " 下一页 ",
+          "sLast": " 最后一页 "
+        }
+      },
+      fnDrawCallback : function () {  //添加序号
+        let api = this.api();
+        api.column(0).nodes().each(function(cell, i) {
+          cell.innerHTML = i + 1;
+        });
+      },
+      columnDefs: [  //指定的列不排序
+        { orderable: false, targets: -1 }  //允许你提供从右边(使用负数)和从左边偏移的索引
+      ]
+    });
+
+    // 确定新增项目
+    $('#addButton').click(function () {
+      if ($('#add-company').next().hasClass('glyphicon-ok')) {
+        if ($('#add-name').next().hasClass('glyphicon-ok')) {
+          if ($('#add-addr').next().hasClass('glyphicon-ok')) {
+            if ($('#add-contacts').next().hasClass('glyphicon-ok')) {
+              if ($('#add-phone').next().hasClass('glyphicon-ok')) {
+                var mydate = new Date().Format("yyyy-MM-dd HH:mm:ss");
+                var postobj = {
+                  company: $('#add-company').val(),
+                  name: $('#add-name').val(),
+                  addr: $('#add-addr').val(),
+                  contacts: $('#add-contacts').val(),
+                  phone: $('#add-phone').val()
+                }
+                addrow(postobj);
+              } else {
+                alert('请输入正确的联系人手机号，且不能为空！');
+              }
+            } else {
+              alert('请输入正确的联系人，且不能为空！');
+            }
+          } else {
+            alert('请输入正确的单位地址，且不能为空！');
+          }
+        } else {
+          alert('请输入正确的单位名称，且不能为空！');
+        }
+      }else {
+        alert('请输入正确的下属单位，且不能为空！');
+      }
+    });
+
+    // 项目数据加入页面表格中
+    function addrow(obj) {
+      t.row.add( [
+        '',
+        obj.company,
+        obj.name,
+        obj.addr,
+        obj.contacts,
+        obj.phone,
+        '<span>\n' +
+        '<a role="button" class="btn btn-xs btn-primary" onclick="editModal(this);">编辑</a>\n' +
+        '<a role="button" class="btn btn-xs btn-primary" onclick="allow(this);">允许修改</a>\n' +
+        '</span>'
+      ] ).draw();
+      alert('项目添加成功');
+      $("#add-Modal").modal("hide");
+    }
+
+    // 新增项目模态框关闭时，清空表单输入值并取消校验样式
+    $("#add-Modal").on('hidden.bs.modal',function(e){
+      $('#add-company').val('');
+      $('#add-name').val('');
+      $('#add-addr').val('');
+      $('#add-contacts').val('');
+      $('#add-phone').val('');
+
+      //移除form表单验证  上次的校验配置
+      $("#addForm").data('bootstrapValidator').destroy();
+      $('#addForm').data('bootstrapValidator', null);
+      // Modal验证销毁重构
+      formValidator();
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  // 初始化表单验证
+  $(document).ready(function() {
+    formValidator();
+    formValidatorEdit();
+  });
+  function formValidator() {
+    //表单验证，当输入错误的值时，输入框下以文字格式提示错误  验证规则
+    $('#addForm').bootstrapValidator({
+      message: '此值无效',
+      feedbackIcons: {  //反馈图标
+        valid: 'glyphicon glyphicon-ok',  //有效的：正确
+        invalid: 'glyphicon glyphicon-remove',  //无效的：错误
+        validating: 'glyphicon glyphicon-refresh'  //验证：刷新
+      },
+      fields: {
+        addcompany: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '下属单位是必需的，不能为空'
+            },
+            stringLength: {
+              min: 2,
+              max: 18,
+              message: '下属单位长度必须大于2个字符，小于18个字符'
+            }
+          }
+        },
+        addname: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '单位名称是必需的，不能为空'
+            },
+            stringLength: {
+              min: 0,
+              max: 100,
+              message: '单位名称长度必须小于100个字符'
+            }
+          }
+        },
+        addaddr: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '单位地址是必需的，不能为空'
+            },
+            stringLength: {
+              min: 0,
+              max: 100,
+              message: '单位地址长度必须小于100个字符'
+            }
+          }
+        },
+        addcontacts: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '联系人是必需的，不能为空'
+            },
+            stringLength: {
+              min: 0,
+              max: 100,
+              message: '联系人长度必须小于100个字符'
+            }
+          }
+        },
+        addphone: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '手机号是必需的，不能为空'
+            },
+            stringLength: {
+              min: 11,
+              max: 11,
+              message: '手机号长度必须为11个字符'
+            },
+            regexp: {
+              regexp: /^(13[0-9]|14[579]|15[0-3,5-9]|16[56]|17[0135678]|18[0-9]|19[89])\d{8}$/,
+              message: '手机号码有误，请重填'
+            }
+          }
+        }
+      }
+    })
+      .on('success.form.bv', function(e) {
+        // 阻止提交表单
+        e.preventDefault();
+
+        var $form = $(e.target),
+          validator = $form.data('bootstrapValidator');
+        $form.find('.alert').html('Thanks for signing up. Now you can sign in as ' + validator.getFieldElements('addname').val()).show();
+      });
+  }
+  function formValidatorEdit() {
+    //表单验证，当输入错误的值时，输入框下以文字格式提示错误  验证规则
+    $('#editForm').bootstrapValidator({
+      message: '此值无效',
+      feedbackIcons: {  //反馈图标
+        valid: 'glyphicon glyphicon-ok',  //有效的：正确
+        invalid: 'glyphicon glyphicon-remove',  //无效的：错误
+        validating: 'glyphicon glyphicon-refresh'  //验证：刷新
+      },
+      fields: {
+        editcompany: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '下属单位是必需的，不能为空'
+            },
+            stringLength: {
+              min: 2,
+              max: 18,
+              message: '下属单位长度必须大于2个字符，小于18个字符'
+            }
+          }
+        },
+        editname: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '单位名称是必需的，不能为空'
+            },
+            stringLength: {
+              min: 0,
+              max: 100,
+              message: '单位名称长度必须小于100个字符'
+            }
+          }
+        },
+        editaddr: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '单位地址是必需的，不能为空'
+            },
+            stringLength: {
+              min: 0,
+              max: 100,
+              message: '单位地址长度必须小于100个字符'
+            }
+          }
+        },
+        editcontacts: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '联系人是必需的，不能为空'
+            },
+            stringLength: {
+              min: 0,
+              max: 100,
+              message: '联系人长度必须小于100个字符'
+            }
+          }
+        },
+        editphone: {
+          message: '无效',
+          validators: {
+            notEmpty: {
+              message: '手机号是必需的，不能为空'
+            },
+            stringLength: {
+              min: 11,
+              max: 11,
+              message: '手机号长度必须为11个字符'
+            },
+            regexp: {
+              regexp: /^(13[0-9]|14[579]|15[0-3,5-9]|16[56]|17[0135678]|18[0-9]|19[89])\d{8}$/,
+              message: '手机号码有误，请重填'
+            }
+          }
+        }
+      }
+    })
+      .on('success.form.bv', function(e) {
+        // 阻止提交表单
+        e.preventDefault();
+
+        var $form = $(e.target),
+          validator = $form.data('bootstrapValidator');
+        $form.find('.alert').html('Thanks for signing up. Now you can sign in as ' + validator.getFieldElements('addname').val()).show();
+      });
+  }
+</script>
+<script>
+  // 项目信息修改
+  function editModal(obj) {
+    if($(obj).attr("disabled") != 'disabled') {  //如果按钮是可用的
+      $("#edit-Modal").modal("show");
+
+      var tds = $(obj).parents('tr').find('td');
+      $('#edit-index').val(tds.eq(0).text());
+      $('#edit-company').val(tds.eq(1).text());
+      $('#edit-name').val(tds.eq(2).text());
+      $('#edit-addr').val(tds.eq(3).text());
+      $('#edit-contacts').val(tds.eq(4).text());
+      $('#edit-phone').val(tds.eq(5).text());
+    } else {
+      return false;
+    }
+  }
+
+  // 确定项目修改
+  $('#editButton').click(function () {
+    var postobj = {
+      index: $('#edit-index').val() - 1,
+      companyIndex: 1,
+      company: $('#edit-company').val(),
+      nameIndex: 2,
+      name: $('#edit-name').val(),
+      addrIndex: 3,
+      addr: $('#edit-addr').val(),
+      contactsIndex: 4,
+      contacts: $('#edit-contacts').val(),
+      phoneIndex: 5,
+      phone: $('#edit-phone').val()
+    };
+    updateTableInfo(postobj);
+    alert('修改成功');
+    $('#edit-Modal').modal('hide');
+  })
+
+  // 通过序号，在修改数据库成功后修改页面表格对应数据
+  function updateTableInfo(obj) {
+    var td = $('#example').find('tbody').find('tr').eq(obj.index).find('td');
+    td.eq(obj.companyIndex).html(obj.company);
+    td.eq(obj.nameIndex).html(obj.name);
+    td.eq(obj.addrIndex).html(obj.addr);
+    td.eq(obj.contactsIndex).html(obj.contacts);
+    td.eq(obj.phoneIndex).html(obj.phone);
+  }
+
+  // 新增项目模态框关闭时，清空表单输入值并取消校验样式
+  $("#edit-Modal").on('hidden.bs.modal',function(e){
+    //移除form表单验证  上次的校验配置
+    $("#editForm").data('bootstrapValidator').destroy();
+    $('#editForm').data('bootstrapValidator', null);
+    // Modal验证销毁重构
+    formValidatorEdit();
+  });
+
+  // 新增项目，打开模态框
+  $('#addCompany').click(function () {
+    $("#add-Modal").modal("show");
+  });
+
+  function allow(obj) {
+    alert('已允许该下属单位可自行修改一次');
+  }
+</script>
+</body>
+</html>
+

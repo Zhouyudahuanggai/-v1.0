@@ -1,0 +1,49 @@
+<!-- 左侧立柱。包含徽标和边栏 -->
+<aside class="main-sidebar">
+    <!-- 侧边栏：样式可以在 sidebar.less 中找到。 -->
+    <section class="sidebar">
+        <!-- 侧边栏用户面板 -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="/stylesheets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>admin</p>
+                <a href="#"><i class="fa fa-circle text-success"></i>在线的</a>
+            </div>
+        </div>
+
+        <!-- /.搜索表单 -->
+        <!-- 侧边栏菜单：样式可以在 sidebar.less 中找到。 -->
+        <ul class="sidebar-menu">
+            <% if(userObj.type == '审核员') { %>
+                <li class="header">admin</li>
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>项目</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/tables/data"><i class="fa fa-circle-o"></i> 审核页面</a></li>
+                        <li><a href="/tables/quarter"><i class="fa fa-circle-o"></i> 季度审核</a></li>
+                        <li><a href="/tables/receipt"><i class="fa fa-circle-o"></i> 汇总页面</a></li>
+                        <li><a href="/tables/company"><i class="fa fa-circle-o"></i> 单位基本信息</a></li>
+                    </ul>
+                </li>
+            <% } %>
+            <% if(userObj.type == '下属单位') { %>
+                <li class="header">下属单位</li>
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>项目</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/tables/uploadData"><i class="fa fa-circle-o"></i> 上报页面</a></li>
+                        <li><a href="/tables/report"><i class="fa fa-circle-o"></i> 季度汇报</a></li>
+                        <li><a href="/forms/general"><i class="fa fa-circle-o"></i> 基本信息</a></li>
+                    </ul>
+                </li>
+            <% } %>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
